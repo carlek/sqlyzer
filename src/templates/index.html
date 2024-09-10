@@ -1,18 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Query Analyzer</title>
     <link rel="stylesheet" href="static/styles.css">
 </head>
 <body>
-    <h1>Query Analyzer</h1>
+    <div class="container">
+        <h1>SQL Query Analyzer</h1>
+
+        <form hx-post="/analyze" hx-target="#result" hx-indicator="#loading-spinner">
+            
+                <label for="query" style="display:block; margin-bottom: 8px;">Enter SQL Query:</label>
+                <textarea id="query" name="query" cols="50" rows="10" placeholder="Write your SQL query here..." required></textarea>
+            
+            <div class="form-actions">
+                <button type="submit">Analyze</button>
+            </div>
+        </form>
+
+        <!-- Loading spinner -->
+        <div id="loading-spinner" class="loading-spinner" style="display:none;">Analyzing...</div>
+
+        <!-- Result container -->
+        <div id="result"></div>
+    </div>
 
     <script src="static/js/htmx.min.js"></script>
-    <form hx-post="/analyze" hx-target="#result">
-        <textarea name="query" cols="50" rows="10"></textarea>
-        <button type="submit">Analyze</button>
-    </form>
-    <div id="result"></div>
-
 </body>
 </html>
+

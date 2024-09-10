@@ -1,16 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Query Analyzer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Query Analyzer Results</title>
+    <link rel="stylesheet" href="static/styles.css">
 </head>
 <body>
-    <h2>Analysis Result</h2>
-    <ul>
-        <li>Subquery Count: {{ metrics.subquery_count }}</li>
-        <li>Unique Tables: {{ metrics.unique_tables }}</li>
-        <li>Redundant Joins: {{ metrics.redundant_joins }}</li>
-    </ul>
+    <div class="container">
+        <h2>Analysis Results</h2>
+        <ul>
+            <li><strong>Subquery Count:</strong> {{ metrics.subquery_tables }}</li>
+            <li><strong>Unique Tables:</strong> {{ metrics.unique_tables }}</li>
+            <li><strong>Redundant Joins:</strong> {{ metrics.redundant_joins }}</li>
+        </ul>
+        <button id="download" onclick="downloadResult()">Download Report</button>
+    </div>
 
     <script src="static/js/htmx.min.js"></script>
+    <script>
+        function downloadResult() {
+            const resultContent = `
+                Subquery Count: {{ metrics.subquery_tables }}
+                Unique Tables: {{ metrics.unique_tables }}
+                Redundant Joins: {{ metrics.redundant_joins }}
+            `;
+            const blob = new Blob([resultContent], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'query_analysis.txt';
+            link.click();
+        }
+    </script>
 </body>
 </html>
+

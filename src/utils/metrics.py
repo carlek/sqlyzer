@@ -4,7 +4,7 @@ from sqlparse.tokens import DML, Keyword, Whitespace
 
 def subquery_tables(query: str) -> tuple[int, list[str]]:
     """
-    Dount the number of subqueries and extract the table names from these subqueries.
+    Count the number of subqueries and extract the table names from these subqueries.
 
     Parameters:
     query (str): The SQL query to analyze.

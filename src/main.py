@@ -1,11 +1,14 @@
 from fastapi import FastAPI, Request, Form
 from fastapi.responses import HTMLResponse, FileResponse
+from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import uvicorn
 from utils.metrics import unique_tables, subquery_tables, redundant_joins
 
 app = FastAPI()
 templates = Jinja2Templates(directory="src/templates")
+app.mount("/static", StaticFiles(directory="src/static"), name="static")
+
 
 @app.get("/", response_class=HTMLResponse)
 async def root(request: Request):
