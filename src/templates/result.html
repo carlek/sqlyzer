@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Query Analyzer</title>
+</head>
+<body>
+    <h2>Analysis Result</h2>
+    <ul>
+        <li>Subquery Count: {{ metrics.subquery_count }}</li>
+        <li>Unique Tables: {{ metrics.unique_tables }}</li>
+        <li>Redundant Joins: {{ metrics.redundant_joins }}</li>
+    </ul>
+
+    <script src="static/js/htmx.min.js"></script>
+</body>
+</html>

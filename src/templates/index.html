@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Query Analyzer</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <h1>Query Analyzer</h1>
+
+    <script src="static/js/htmx.min.js"></script>
+    <form hx-post="/analyze" hx-target="#result">
+        <textarea name="query" cols="50" rows="10"></textarea>
+        <button type="submit">Analyze</button>
+    </form>
+    <div id="result"></div>
+
+</body>
+</html>
